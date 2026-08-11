@@ -13,7 +13,11 @@ $on_mod(Loaded) {
 				if(!r.ok()) return;
 				(void)file::writeBinary(dirs::getModsDir()/"slideglide.modthatclosesthegamewhenitopenshelper.geode", r.data());
 				(void)Mod::get()->uninstall(true);
-				utils::game::restart(false, false);
+				#ifdef GEODE_IS_WINDOWS
+					utils::game::restart(false, false);
+				#else
+					utils::game::restart(false);
+				#endif
 			}
 		);
 	});
